@@ -1,0 +1,22 @@
+{% extends "jmbo/inclusion_tags/modelbase_detail.html" %}
+{% load jmbo_template_tags ultracache_tags %}
+
+{% block content %}
+    {% ultracache 3600 'object-detail-inclusion' object.id object.modified %}
+        <a href="{{ object.django_link.get_absolute_url }}">
+            {% if '<img' not in object.content %}
+                {% if object.image %}
+                    <div class="image">
+                        <img src="{{ object.image_detail_url }}" />
+                        {% if object.image_attribution %}
+                            <div class="attribution">{{ object.image_attribution }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="content">
+                {{ object.content|safe }}
+            </div>
+        </a>
+    {% endultracache %}
+{% endblock %}

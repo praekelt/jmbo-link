@@ -12,8 +12,14 @@ setup(
     url="https://github.com/praekelt/jmbo-link",
     packages = find_packages(),
     install_requires = [
-        "jmbo",
-        "django-link"
+        #"jmbo>=3.0.0", uncomment when released
+        "pypandoc",
+        "markdown",
+        "django-link",
+        "django-simplemde"
+    ],
+    tests_require=[
+        "tox"
     ],
     include_package_data=True,
     classifiers=[
